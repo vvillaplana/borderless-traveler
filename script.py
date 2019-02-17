@@ -27,7 +27,7 @@ attractions = [ [] for destination in destinations]
 def add_attraction(destination, attraction):
   try:
     destination_index = get_destination_index(destination)
-    attractions_for_destination = attractions[destination_index].append(attraction)
+    attractions[destination_index].append(attraction)
   except SyntaxError:
     return
   

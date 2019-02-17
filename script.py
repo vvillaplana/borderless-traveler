@@ -27,7 +27,7 @@ attractions = [ [] for destination in destinations]
 def add_attraction(destination, attraction):
   try:
     destination_index = get_destination_index(destination)
-    attractions[destination_index].append(attraction)
+    attractions_for_destination = attractions[destination_index].append(attraction)
   except SyntaxError:
     return
   
@@ -77,10 +77,15 @@ def get_attractions_for_traveler(traveler):
   interests_string += ", we think you'll like these places around "
   interests_string += traveler_destination
   interests_string += ": "
-  for attr in traveler_attractions:
-    interests_string += attr
+  for i in range(len(traveler_attractions)):
+    if (traveler_attractions[i] == traveler_attractions[-1]) and (len(traveler_attractions) == 1):  
+      interests_string += "the " + traveler_attractions[i] + "."
+    elif (traveler_attractions[i] == traveler_attractions[-1]) and (len(traveler_attractions) > 1):  
+      interests_string += "and the " + traveler_attractions[i] + "."
+    else:
+      interests_string += "the " + traveler_attractions[i] + ", "
   return interests_string
 
 #code for testing
-#smills_france = get_attractions_for_traveler(['Dereck Smill', 'Paris, France', ['monument']])
-#print(smills_france)
+smills_france = get_attractions_for_traveler(['Dereck Smill', 'Paris, France', ['monument']])
+print(smills_france)
